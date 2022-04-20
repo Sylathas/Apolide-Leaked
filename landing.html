@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<title>Covo Hotel Theatre</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Virtual live performances platform by Covo." />
+		<meta property="og:url" content="http://theatre.covohotel.com" />
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="Covo Hotel Theatre" />
+		<meta property="og:description" content="Virtual live performances platform by Covo." />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="Covo Hotel Theatre" />
+		<style>
+		#start{
+			background-image: url(./assets/landing/start.jpg);
+		}
+		#welcome{
+			background-image: url(./assets/landing/welcome.jpg);
+		}
+		#hints{
+			background-image: url(./assets/landing/hints.jpg);
+		}
+		#statico{
+			position: fixed;
+  		right: 0;
+  		bottom: 0;
+  		min-width: 100%;
+  		min-height: 100%;
+			z-index: 3;
+			opacity: .2;
+			pointer-events: none;
+		}
+		.onTop{
+			z-index: 2;
+		}
+		.page{
+			position: absolute;
+			left:0;
+			top:0;
+			width:100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		.continue{
+			position: absolute;
+			right: 10%;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 80%;
+			width: 10%;
+			background-image: url(./assets/landing/continue.jpg);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			cursor: pointer;
+		}
+		@media screen and (max-width: 600px) {
+  		#start {
+				background-image: url(./assets/landing/start_mobile.jpg);
+  		}
+			#welcome {
+				background-image: url(./assets/landing/welcome_mobile.jpg);
+  		}
+			#hints{
+				background-image: url(./assets/landing/hints_mobile.jpg);
+			}
+			.continue{
+				position: relative;
+				right: 0;
+				top: 70%;
+				transform: translateY(0);
+				height: 10%;
+				width: 100%;
+				background-image: url(./assets/landing/continue_mobile.jpg);
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+		}
+		</style>
+	</head>
+
+	<body id="body">
+		<video autoplay muted loop id="statico">
+			<source src="./assets/landing/static.mp4" type="video/mp4">
+		</video>
+		<div id="start" class="page onTop">
+			<div class="continue" onclick="changePage(0)"></div>
+		</div>
+		<div id="welcome" class="page">
+		</div>
+		<div id="hints" class="page">
+			<div class="continue" onclick="changePage(1)"></div>
+		</div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="./js/landing.js"></script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<title>Covo Hotel Theatre</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Virtual live performances platform by Covo." />
+		<meta property="og:url" content="http://theatre.covohotel.com" />
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="Covo Hotel Theatre" />
+		<meta property="og:description" content="Virtual live performances platform by Covo." />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="Covo Hotel Theatre" />
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Kavivanar" rel="stylesheet">
+		<link href="./style.css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+	</head>
+
+	<body id="body">
+		<div id="loading">
+			<video id="ticketLoadingComputer" loop autoplay muted>
+				<source src="assets/loading/Horizontal.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<video id="ticketLoadingMobile" loop autoplay muted playsinline>
+				<source src="assets/loading/Vertical.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+				<p>0%</p>
+				<div id="loadingBar">
+					<div id="loadingBarFill"></div>
+				</div>
+		</div>
+		<video id="video" loop crossOrigin="anonymous" muted='muted' playsinline style="display:none" controls preload="none">
+			<source src="Video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+		</video>
+		<div id="menuButton"></div>
+		<div id="menu">
+			<div id="closeButton"></div>
+			<p id="menuTitle">MENU</p>
+		  <p id="sliderValue">Qualità: <span id="demo"></span></p>
+			<input type="range" min="1" max="5" value="3" class="slider" id="myRange">
+		</div>
+		<h1 id="countdown">00g 06h 23m</h1>
+
+		<div id="css"></div>
+		<div id="webgl"></div>
+
+		<div id="message">
+			<p id="message_text"></p>
+			<button id="message_ok">OK</button>
+		</div>
+
+		<script>
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds, hours, days;
+                setInterval(function () {
+                    days = parseInt(timer / (3600*24));
+                    hours = parseInt(Math.floor(timer % (3600*24) / 3600));
+                    minutes = parseInt(timer % 3600 / 60);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    days = days < 10 ? "0" + days : days;
+                    hours = hours < 10 ? "0" + hours : hours;
+
+                    display.textContent = days + "g " + hours + "h " + minutes + "m";
+
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                }, 1000);
+            }
+
+            window.onload = function () {
+                const date = new Date();
+                var dateInSec = date.getTime();
+                var startDate = 1641661200000;
+                var daysToLive = (startDate - dateInSec) / 1000;
+                display = document.querySelector('#countdown');
+                startTimer(daysToLive, display);
+            };
+        </script>
+
+		<script type="'text/javascript'">
+			(function(){
+
+			  var _z = console;
+			  Object.defineProperty( window, "console", {
+					get : function(){
+						if( _z._commandLineAPI ){
+						throw "Sorry, Can't execute scripts!";
+							  }
+						return _z;
+					},
+					set : function(val){
+						_z = val;
+					}
+			  });
+
+			})();
+		</script>
+		<script type="'text/javascript'">
+			window.console.log = function(){
+				console.error('Sorry , developers tools are blocked here....');
+				window.console.log = function() {
+					return false;
+				}
+			  }
+
+			  console.log('test');
+		</script>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+
+		<script type="text/javascript" src="/libs/inflate.min.js"></script>
+		<script type="text/javascript" src="/libs/Detector.js"></script>
+		<script type="text/javascript" src="/libs/toon3d.js"></script>
+		<script type="module" src="./texts.js"></script>
+		<script type="module" src="./gameWaiting.js"></script>
+		<script>
+		</script>
+	</body>
+</html>

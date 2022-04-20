@@ -1,0 +1,393 @@
+@font-face {
+  font-family: 'terminal_grotesque';
+  src: url('./assets/fonts/terminal-grotesque_open.otf');
+}
+
+body {
+  font-family: 'terminal_grotesque';
+  background-color: #000;
+  color: #fff;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#loading {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+}
+
+#menuButton {
+  height: 110px;
+  width: 110px;
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  z-index: 10;
+  background-image: url("./Menu.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#menuButton:active {
+  background-image: url("./Menu_pressed.png");
+}
+
+#menu {
+  height: 80%;
+  width: 50%;
+  position: absolute;
+  z-index: 11;
+  display: none;
+  background-image: url("./assets/images/UI/menu_frame.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25%;
+  text-align: center;
+  text-size-adjust: 20%;
+}
+
+#menuTitle{
+  position: relative;
+  top: 10%;
+  font-size: 5vh;
+  animation: text-flicker 3s linear infinite;
+}
+
+#message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-family: 'Kavivanar', san-serif;
+  font-size: 40px;
+  width: 80%;
+  max-width: 280px;
+  padding: 15px 15px 50px 15px;
+  text-align: center;
+  display: none;
+  align-content: center;
+  justify-content: center;
+  background-color: aliceblue;
+  border: medium solid #3D455C;
+  border-radius: 20px;
+  color: #3D455C;
+  z-index: 99;
+}
+
+#message_ok {
+  position: absolute;
+  bottom: 10px;
+  padding: 10px 20px 10px 20px;
+  font-family: sans-serif;
+  font-size: 20px;
+  background-color: #3D455C;
+  color: #fff;
+  border-radius: 8px;
+  border: medium solid #696882;
+}
+
+#chat {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  bottom: -40px;
+  transition: all 0.5s;
+}
+
+#sliderValue{
+  position: relative;
+  top: 10%;
+  font-size: 2.5vh;
+}
+
+.slidecontainer {
+  position: relative;
+  top: 50%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 70%;
+  /* Full-width */
+  height: 40px;
+  /* Specified height */
+  background: #d3d3d3;
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+  /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Override default look */
+  appearance: none;
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: #04AA6D;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: #04AA6D;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */
+}
+
+#store {
+  width: 80%;
+  height: 80%;
+  background-color: #3D455C;
+  position: absolute;
+  z-index: 1;
+  top: 10%;
+  right: 10%;
+  overflow: scroll;
+  display: none;
+}
+
+#nftBox {
+  width: 30vw;
+  height: 55vh;
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  background-color: aquamarine;
+  overflow: hidden;
+}
+
+#nftDesc {
+  width: 35%;
+  height: 50%;
+  position: absolute;
+  top: 15%;
+  left: 55%;
+  right: 20%;
+  overflow: scroll;
+}
+
+#storeHead {
+  top: 3%;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-size: xx-large;
+}
+
+#addressNft {
+  position: absolute;
+  right: 15%;
+  top: 83%;
+  left: 60%;
+}
+
+#nftCounter {
+  color: red;
+  position: absolute;
+  font-size: xx-large;
+  top: 85%;
+  left: 15%;
+  right: 80%;
+}
+
+.grid-container {
+  margin-top: 10%;
+  display: grid;
+  grid-gap: 50px;
+}
+
+#bar {
+  width: 80%;
+  height: 80%;
+  background-color: #3D455C;
+  position: absolute;
+  z-index: 1;
+  top: 10%;
+  right: 10%;
+  overflow: scroll;
+  display: none;
+}
+
+#barHead {
+  top: 3%;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-size: xx-large;
+}
+
+#tequilaBox {
+  width: 30vw;
+  height: 55vh;
+  background-color: aquamarine;
+}
+
+#juiceBox {
+  width: 30vw;
+  height: 55vh;
+  background-color: aquamarine;
+}
+
+#parentOverlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  opacity: 1;
+  transition: .5s;
+}
+
+#dialogueOverlay {
+  position: absolute;
+  background-image: url("assets/images/NPC/Textbox.png");
+  background-size: contain;
+  right: 5%;
+  bottom: 10%;
+  height: 50%;
+  width: 55%;
+  opacity: 0;
+  transition: 1s;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#characterOverlay {
+  position: absolute;
+  background-image: url("assets/images/NPC/groupie.png");
+  background-size: contain;
+  left: 5%;
+  bottom: 10%;
+  height: 50%;
+  width: 35%;
+  opacity: 0;
+  transition: 1s;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#dialogue {
+  position: absolute;
+  left: 55%;
+  top: 58%;
+  opacity: 0;
+  z-index: 10;
+  width: 30%;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity:0.6;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+
+  2% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  8% {
+    opacity:0.7;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  9% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  12% {
+    opacity:0.6;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  20% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  25% {
+    opacity:0.8;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  30% {
+    opacity:1;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+
+  70% {
+    opacity:0.8;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+
+  72% {
+    opacity:0.7;
+    text-shadow:0px 0px 29px rgba(0, 255, 0, 1);
+  }
+
+  77% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+  100% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px rgba(0, 255, 0, 1);
+  }
+}

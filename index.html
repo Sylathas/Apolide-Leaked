@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<title>Covo Hotel Theatre</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Virtual live performances platform by Covo." />
+		<meta property="og:url" content="http://theatre.covohotel.com" />
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="Covo Hotel Theatre" />
+		<meta property="og:description" content="Virtual live performances platform by Covo." />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="Covo Hotel Theatre" />
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Kavivanar" rel="stylesheet">
+		<link href="./style.css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+	</head>
+
+	<body id="body">
+		<div id="loading">
+			<video id="ticketLoadingComputer" loop autoplay muted>
+				<source src="assets/loading/Loading.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<video id="ticketLoadingMobile" loop autoplay playsinline>
+				<source src="assets/loading/Loading_mobile.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+				<p id="loadText">Il caricamento potrebbe durare un po'<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span> 0%</p>
+				<div id="loadingBar">
+					<div id="loadingBarFill"></div>
+				</div>
+		</div>
+		<video id="video" loop crossOrigin="anonymous" muted='muted' playsinline style="display:none" controls preload="none">
+			<source src="/video" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+		</video>
+		<video id="teleport" loop playsinline>
+			<source src="assets/videos/Transizione.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+		<div id="changeView"></div>
+		<div id="changeDance"></div>
+		<div id="menuButton"></div>
+		<div id="menu">
+			<div id="closeButton"></div>
+			<p id="menuTitle">MENU</p>
+		  <p id="sliderValue">Qualità: <span id="demo"></span></p>
+		  <div id="sliderwrap"><input type="range" min="1" max="5" value="3" class="slider" id="myRange"></div>
+		</div>
+
+		<div id="store">
+			<div id="storeHead">
+				<p>STORE.mov</p>
+				<div id="closeStore"></div>
+				<div id="sentNFT"><p>NFT INVIATO</p></div>
+			</div>
+			<div id="nftBox">
+					<video autoplay loop muted playsinline class="overlayVideo">
+						<source src="./assets/videos/nft.mp4" type="video/mp4" />
+					</video>
+			</div>
+			<div id="nftCounter"> 50/50 </div>
+			<div id="nftDesc">
+				<div id='storeName'>NFT FELPA COVO</div><br>
+				<p>Grazie mille per essere presente ad Apolide! Per ringraziarti, Covo ti regala l'NFT della felpa APOLIDE creata per l'occasione. Per ottenerla è necessario un Wallet (consigliamo MetaMask), copiare il proprio wallet address qua sotto e inviarlo!<br>
+					Se fossi preoccupat* dagli NFT a livello ambientale, la rete usata per gli NFT di Covo è polygon, una blockchain PoS il cui impatto ecologico è molto basso.</p>
+				<div id="addressNft">
+					address <input id="addressBox" type="text"></input>
+				</div>
+				<div id="confermaNft"></div>
+			</div>
+			<div id="closeStoreMobile"></div>
+		</div>
+
+		<div id="infobox">
+			<div id="infoHead">
+				<p>START.tor</p>
+			</div>
+			<div class="infoSection" id="start">
+				<div class='infoName'>
+					<video autoplay muted loop id="logoVideo">
+  					<source src="./assets/images/UI/LeakedLogo.mp4" type="video/mp4">
+					</video>
+				</div><br><br>
+				<p class="infoText">Per muovere il tuo avatar puoi utilizzare l'analogico che trovi nella parte bassa dello schermo, oppure i tasti W-A-S-D sulla tastiera. <br>
+					Potrai spostarti liberamente per tutta la location e interagire con personaggi e punti di interesse.<br>
+					Come? Semplicemente clicca sul personaggio.</p>
+					<div class="infoImage" id="imgcomandi"></div>
+				<div id="infoSections">
+					<div class="infoSections2">
+						<div class="infonavSection" id="navAvatar"></div>
+						<div class="infonavSection" id="navObbiettivi"></div>
+						<div class="infonavSection" id="navComandiComputer"></div>
+						<div class="infonavSection" id="navComandiMobile"></div>
+					</div>
+					<div class="infoSections2">
+						<div class="infonavSection" id="navLuoghi"></div>
+						<div class="infonavSection" id="navContatti"></div>
+						<div class="infonavSection" id="navClose"></div>
+					</div>
+				</div>
+			</div>
+			<div class="infoSection" id="avatar" style="display: none;">
+				<div class='infoName'>AVATAR</div><br>
+				<p class="infoText">Accedendo all'evento partecipi nelle vesti di un avatar casuale che ti viene assegnato all'ingresso.<br>
+					In caso tu voglia cambiarlo non serve far altro che ricaricare la pagina! <br>
+					Attenzione però: così facendo perderai anche i progressi fatti con l'avatar precedente e dovrai ricominciare! <br>
+					Un consiglio? Se l'avatar che hai non ti soddisfa, aggiorna subito la pagina in modo da trovare quello adatto a te prima di iniziare l'esperienza!
+					Buon divertimento! </p>
+				<div class="infoImage" id="imgavatar"></div>
+				<div class="infoBack" id="back1"></div>
+			</div>
+			<div class="infoSection" id="obbiettivi" style="display: none;">
+				<div class='infoName'>OBBIETTIVI</div><br>
+				<p class="infoText">Ti trovi ad un concerto, quindi non credo serva che ti ricordi di godertelo! <br>
+					Questo è di sicuro il primo obiettivo! <br>
+					Ma a dire il vero, l'evento non si limita a questo. <br>
+					In giro per il posto infatti si trovano 6 personaggi, del tutto diversi tra di loro, con cui potrai interagire più volte. Parlandoci scoprirai vari fatti e curiosità sull'evento e su di loro ed ogni volta avranno qualcosa di nuovo da dire.<br>
+					Nel caso tu riesca a parlare con tutti e 6, otterrai una chiave digitale per la Conference Room di Covo Hotel e l'accesso all'anteprima di contenuti esclusivi. <br>
+					Buona fortuna!</p>
+				<div class="infoImage" id="imgobbiettivi"></div>
+				<div class="infoBack" id="back2"></div>
+			</div>
+			<div class="infoSection" id="comandiComputer" style="display: none;">
+				<div class='infoName'>COMANDI</div><br>
+				<p class="infoText">Per muovere il tuo avatar puoi utilizzare l'analogico che trovi nella parte bassa dello schermo, oppure i tasti W-A-S-D sulla tastiera. <br>
+					Potrai spostarti liberamente per tutta la location di OUTCOVO e interagire con personaggi e punti di interesse, come ad esempio il negozio. <br>
+					Come? Clicca semplicemente sul personaggio o negozionante con cui vuoi parlare, o sulla bevanda che vuoi provare. <br>
+					Se vuoi andare sotto il palco e ballare a ritmo di musica basta cliccare sul tasto apposito.<br>
+					Facile no?</p>
+				<div class="infoImage" id="imgcomandi"></div>
+				<div class="infoBack" id="back3"></div>
+			</div>
+			<div class="infoSection" id="comandiMobile" style="display: none;">
+				<div class='infoName'>COMANDI</div><br>
+				<p class="infoText">Per muovere il tuo avatar utilizza l'analogico che trovi nella parte bassa dello schermo. <br>
+					Potrai spostarti liberamente per tutta la location di APOLIDE e interagire con personaggi e punti di interesse, come ad esempio il negozio. <br>
+					Come? Tocca semplicemente sullo schermo in direzione del personaggio o negoziante con cui vuoi parlare, o della bevanda che vuoi provare. <br>
+					Se vuoi andare sotto il palco e ballare a ritmo di musica basta toccare sul tasto apposito.<br>
+					Facile no?</p>
+				<div class="infoImage" id="imgcomandi"></div>
+				<div class="infoBack" id="back4"></div>
+			</div>
+			<div class="infoSection" id="luoghi" style="display: none;">
+				<div class='infoName'>LUOGHI</div><br>
+				<p class="infoText">La location di OUTCOVO si divide in 4 punti di interesse:<br><br>
+					1. L'area palco: qui potrai assistere al concerto direttamente da sotto il palco e grazie ai maxischermi non ti perderai nemmeno un istante dell'evento. <br><br>
+					2. Il bar: qui potrai gustarti un drink, scegliendo tra due disponibili. Occhio a non esagerare o le conseguenze non tarderanno a farsi sentire! <br><br>
+					3. Il negozio: qui potrai vedere cosa riserva il merchandising di Covo per l'evento ed ottenere gadget omaggio per l'occasione! <br><br>
+					4. L'Info Box: ultimo, ma non per importanza, me. Torna qui ogni volta che hai dei dubbi, mi troverai sempre posizionato al centro della location, pronto ad aiutarti.</p>
+				<div class="infoImage" id="imgluoghi"></div>
+				<div class="infoBack" id="back5"></div>
+			</div>
+			<div class="infoSection" id="contatti" style="display: none;">
+				<div class='infoName'>CONTATTI</div><br>
+				<p class="infoText">Di seguito troverai tutti i contatti utili:<br><br>
+					- INSTAGRAM: <a href="#">@covo.world</a><br>
+					- YOUTUBE: <a href="#">COVO</a><br>
+					- WEBSITE: <a href="#">covohotel.com</a><br>
+					- TWITCH: <a href="#">LiveFromCovo</a> </p>
+				<div class="infoImage" id="imgcontatti"></div>
+				<div class="infoBack" id="back6"></div>
+			</div>
+		</div>
+
+		<div id="bar">
+			<div id="barHead">
+				<p>BAR.mov</p>
+				<div id="closeBar"></div>
+			</div>
+			<div class="grid-container">
+				<div id="juiceBox" class='barProduct'>
+					<div style='width: 100%'>
+						<div class='productImage'>
+							<video autoplay loop muted playsinline class="overlayVideo">
+			          <source src="./assets/videos/cup.mp4" type="video/mp4">
+			        </video>
+						</div>
+						<div class="barDesc">
+							<div class='productName'>Red Martian</div><br>
+							<p>Bevanda alcolica, producibile solo all'interno dell'atmosfera di Marte. <br>
+								Si dice che vengano utilizzate particelle di comete e alcune bacche che solo recentemente hanno iniziato ad apparire sulla superficie del pianeta rosso.<br>
+								Tuttavia il processo di creazione della bevanda rimane tutt'oggi un mistero.</p>
+							<div id = "buyDrink"class="buyBar"></div>
+						</div>
+					</div>
+				</div>
+				<div id="barDivider"></div>
+				<div id="tequilaBox" class='barProduct'>
+					<div style='width: 100%'>
+						<div class='productImage'>
+							<video autoplay loop muted playsinline class="overlayVideo">
+			          <source src="./assets/videos/bottiglia.mp4" type="video/mp4">
+			        </video>
+						</div>
+						<div class="barDesc">
+							<div class='productName'>Moonshine</div><br>
+							<p>Bevanda alcolica dalla gradazione sconosciuta. Viene prodotta unendo frammenti di stelle e polvere di cratere lunare. <br>
+								 Presenta uno scintillio caratteristico che la rende la bevanda più iconica di tutta la galassia.</p>
+							<div id = "buyDrink2" class="buyBar"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="closeBarMobile">
+			</div>
+		</div>
+		<div id="dialogueCounter">0/6</div>
+		<div id="dialogueFinished">
+			<div id="infoHead" style="height: 10%">
+				<p>DOWNLOAD.tor</p>
+			</div>
+			<div id="usbImage"></div>
+			<div id="link">
+				<div class="arrowLink" id="arrowLinkLeft"></div>
+				<a id="dialogueFinishedCounterDue" href="https://upload.wikimedia.org/wikipedia/it/thumb/4/4e/Ciao_PX.jpg/1200px-Ciao_PX.jpg" download="Covo_Leak">Download Covo_Leak</a>
+				<div class="arrowLink" id="arrowLinkRight"></div>
+			</div>
+		</div>
+
+		<div id="css"></div>
+		<div id="webgl"></div>
+
+		<div id="message">
+			<p id="message_text"></p>
+			<button id="message_ok">OK</button>
+		</div>
+
+		<script type="'text/javascript'">
+			(function(){
+
+			  var _z = console;
+			  Object.defineProperty( window, "console", {
+					get : function(){
+						if( _z._commandLineAPI ){
+						throw "Sorry, Can't execute scripts!";
+							  }
+						return _z;
+					},
+					set : function(val){
+						_z = val;
+					}
+			  });
+
+			})();
+		</script>
+		<script type="'text/javascript'">
+			window.console.log = function(){
+				console.error('Sorry , developers tools are blocked here....');
+				window.console.log = function() {
+					return false;
+				}
+			  }
+
+			  console.log('test');
+		</script>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+
+		<script type="text/javascript" src="/libs/inflate.min.js"></script>
+
+
+		<script type="text/javascript" src="/libs/Detector.js"></script>
+		<script type="text/javascript" src="/libs/toon3d.js"></script>
+		<script type="module" src="./texts.js"></script>
+		<script type="module" src="./game.js"></script>
+		<script type="text/javascript" src="./store.js"></script>
+		<script>
+		</script>
+	</body>
+</html>

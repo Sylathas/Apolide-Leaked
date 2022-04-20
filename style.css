@@ -1,0 +1,1458 @@
+@font-face {
+  font-family: 'terminal_grotesque';
+  src: url('./assets/fonts/terminal-grotesque_open.otf');
+}
+
+@font-face {
+  font-family: 'terminal_grotesque_solid';
+  src: url('./assets/fonts/terminal-grotesque.ttf');
+}
+
+body {
+  font-family: 'terminal_grotesque';
+  background-color: #000;
+  color: #fff;
+  margin: 0px;
+  overflow: hidden;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+#joystick {
+ border: 1px solid #9C9898;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #999;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/*///////*/
+/*LOADING*/
+/*///////*/
+
+@keyframes blink {50% { color: transparent }}
+.loader__dot { animation: 1s blink infinite }
+.loader__dot:nth-child(2) { animation-delay: 250ms }
+.loader__dot:nth-child(3) { animation-delay: 500ms }
+
+#loading {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+}
+
+#loading p {
+  position: absolute;
+  z-index: 10;
+  left: 52%;
+  transform: translateX(-50%);
+  top: 70%;
+  font-size: 30px;
+  color: red;
+}
+
+#ticketLoadingComputer{
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  height: 80%;
+}
+
+#ticketLoadingMobile{
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  height: 70%;
+  display: none;
+}
+
+#loadingBar{
+  position: absolute;
+  z-index: 11;
+  left: 10vw;
+  top: 80%;
+  width: 80vw;
+  height: 2vw;
+  border: 1px solid red;
+}
+
+#loadingBarFill{
+  width: 0;
+  height: 2vw;
+  background-color: red;
+}
+
+/*///////*/
+/*BUTTONS*/
+/*///////*/
+
+#changeView{
+  position: absolute;
+  right: 1%;
+  top: 15%;
+  width: 110px;
+  height: 110px;
+  background-image: url("./assets/images/UI/view/concert_view.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: none;
+}
+
+#changeDance{
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  width: 70px;
+  height: 70px;
+  background-image: url("./assets/images/UI/dance/dance.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: none;
+}
+
+/*////////*/
+/*SETTINGS*/
+/*////////*/
+
+#menuButton {
+  height: 110px;
+  width: 110px;
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  z-index: 1;
+  background-image: url("./Menu.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+  display: none;
+}
+
+#menuButton:active {
+  background-image: url("./Menu_pressed.png");
+}
+
+#closeButton {
+  height: 10%;
+  width: 10%;
+  position: relative;
+  left: 8%;
+  top: 3vh;
+  z-index: 1;
+  cursor: pointer;
+  margin-bottom: 20%;
+}
+
+#menu {
+  height: 80%;
+  width: 50%;
+  min-width: 500px;
+  position: absolute;
+  z-index: 11;
+  display: none;
+  background-image: url("./assets/images/UI/menu_frame.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25%;
+  text-align: center;
+  text-size-adjust: 20%;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#menuTitle{
+  position: relative;
+  top: 0;
+  font-size: 7vh;
+  transform: scale(1, 1.6);
+  animation: text-flicker 3s linear infinite;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#sliderValue{
+  position: relative;
+  top: 0;
+  font-family: 'terminal_grotesque_solid';
+  font-size: 3vh;
+}
+
+.slidecontainer {
+  position: relative;
+  top: 50%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Width of the outside container */
+}
+
+#myRange{
+  background-image: url("./assets/images/UI/slider/3.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 50%;
+  /* Full-width */
+  height: 80px;
+  /* Specified height */
+  background: none;
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+  /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Override default look */
+  appearance: none;
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: transparent;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: transparent;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */
+}
+
+/*///////*/
+/*ENDCONV*/
+/*///////*/
+
+#dialogueFinished{
+  width: 25%;
+  height: 40%;
+  background-color: black;
+  border: 1px solid red;
+  position: absolute;
+  z-index: 1;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  display: none;
+  text-align: center;
+}
+
+#dialogueFinishedCounter{
+  margin-top: 60px;
+  font-family: 'terminal_grotesque';
+  transform: scale(1, 1.6);
+  font-size: 10vh;
+}
+
+#dialogueFinishedCounterDue{
+  font-family: 'terminal_grotesque_solid';
+  font-size: 35px;
+  color: blue;
+}
+
+#link a:hover{
+  color: red;
+}
+
+#dialogueFinishedCounterDue:visited {
+  color: blue;
+}
+
+#dialogueCounter{
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'terminal_grotesque';
+  transform: scale(1, 1.6);
+  font-size: 5vh;
+  cursor: pointer;
+  display: none;
+}
+
+#usbImage{
+  position: relative;
+  left: 50%;
+  top: 8%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 40%;
+  background-image: url("./assets/images/UI/usb.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.arrowLink{
+  width: 30%;
+  height: 20%;
+  background-image: url("./assets/images/UI/arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: blink normal 1s infinite ease-in-out;
+}
+
+#arrowLinkRight{
+  transform: scaleX(-1);
+}
+
+#link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: 100%;
+  height: 30%;
+  transform: translateX(-50%);
+}
+
+#link a {
+  width: 30%;
+}
+
+@keyframes blink {
+    0% {
+        opacity:1;
+    }
+    49% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    99% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+/*/////*/
+/*STORE*/
+/*/////*/
+
+#store {
+  width: 80%;
+  height: 80%;
+  background-color: black;
+  border: 1px solid red;
+  position: absolute;
+  z-index: 1;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  display: none;
+}
+
+#nftBox {
+  width: 40%;
+  height: 65%;
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  border: 1px solid red;
+}
+
+#nftBox video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+}
+
+#nftDesc {
+  width: 35%;
+  height: 50%;
+  position: absolute;
+  top: 15%;
+  left: 55%;
+  right: 20%;
+  font-size: 2vh;
+  font-family: 'terminal_grotesque_solid';
+}
+
+#storeName {
+  font-size: 5vh;
+  font-family: 'terminal_grotesque';
+  transform: scale(1, 1.6);
+}
+
+#storeHead {
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 5%;
+  position: relative;
+  background-image: linear-gradient(red, black);
+  font-family: 'terminal_grotesque_solid';
+  font-size: 23px;
+  margin-top: 0;
+  transition: 1s;
+}
+
+#storeHead p{
+  padding-top: 0.5%;
+  margin-top:0;
+}
+
+#closeStore {
+  position: absolute;
+  top: .8vh;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("./assets/images/UI/close.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#closeStoreMobile{
+  display: none;
+}
+
+#sentNFT {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  font-size: 6vw;
+  text-align: center;
+  transform: translateY(-50%) scale(1, 2);
+  font-family: 'terminal_grotesque';
+  opacity: 0;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .5s;
+}
+
+#nftCounter {
+  color: black;
+  position: absolute;
+  font-size: xx-large;
+  top: 85%;
+  left: 25%;
+  background-color: white;
+  transform: translateX(-50%) scale(1, 1.6);
+  font-size: 3vh;
+  font-family: 'terminal_grotesque_solid';
+}
+
+#addressNft {
+  margin-top: 50%;
+  transform: scale(1, 1.3);
+}
+
+#addressNft input {
+  width: 80%;
+  border: none;
+}
+
+#confermaNft {
+  position: relative;
+  margin-top: 5%;
+  width: 40%;
+  height: 30%;
+  background-image: url("./assets/images/UI/store/Submit.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/*///*/
+/*BAR*/
+/*///*/
+
+.grid-container {
+  height: 95%;
+  display: flex;
+  justify-content: center;
+}
+
+#bar {
+  display: none;
+  width: 80%;
+  height: 80%;
+  background-color: black;
+  border: 1px solid red;
+  position: absolute;
+  z-index: 1;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+
+#barHead {
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 5%;
+  position: relative;
+  background-image: linear-gradient(red, black);
+  font-family: 'terminal_grotesque_solid';
+  font-size: 23px;
+  margin-top: 0;
+  transition: 1s;
+}
+
+#barHead p{
+  margin-top: 0;
+  padding-top: .5%;
+}
+
+#tequilaBox {
+  margin-left: 5%;
+}
+
+#juiceBox {
+  margin-right: 5%;
+}
+
+.barProduct{
+  width: 40%;
+  height: 80%;
+  margin-top: 3%;
+}
+
+.barDesc {
+  margin-top: 10%;
+  width: 100%;
+  font-size: 2vh;
+  font-family: 'terminal_grotesque_solid';
+}
+
+.productName {
+  font-size: 5vh;
+  font-family: 'terminal_grotesque';
+  transform: scale(1, 1.6);
+}
+
+.productImage{
+  width: 100%;
+  height: 30vh;
+}
+
+.buyBar {
+  margin-top: 5%;
+  width: 40%;
+  height: 5vh;
+  background-image: url("./assets/images/UI/bar/Compra.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#closeBar {
+  position: absolute;
+  top: .8vh;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("./assets/images/UI/close.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#closeBarMobile{
+  display: none;
+}
+
+.overlayVideo {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#barDivider{
+  height: 100%;
+  width: 1px;
+  margin-top: 0;
+  background-color: red;
+}
+
+
+
+/*///////*/
+/*INFOBOX*/
+/*///////*/
+
+#infobox {
+  display: block;
+  width: 70%;
+  height: 90%;
+  background-color: black;
+  border: 1px solid red;
+  position: absolute;
+  z-index: 1;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+
+#infoHead {
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 5%;
+  position: relative;
+  background-image: linear-gradient(red, black);
+  font-family: 'terminal_grotesque_solid';
+  font-size: 23px;
+  margin-top: 0;
+  transition: 1s;
+}
+
+#infoHead p{
+  margin-top: 0;
+}
+
+#closeInfo {
+  position: absolute;
+  top: .8vh;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-image: url("./assets/images/UI/close.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#closeInfoMobile{
+  display: none;
+}
+
+.infoSection{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 5%;
+  width: 90%;
+  height: 85%;
+  overflow-y: auto;
+}
+
+.infoName {
+  width: 100%;
+  height: 35%;
+}
+
+#logoVideo {
+  min-height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.infoText {
+  width: 50%;
+  font-size: 3vh;
+  font-family: 'terminal_grotesque_solid';
+  margin-top: 5%;
+}
+
+.infoImage{
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  width: 30%;
+  height: 80%;
+}
+
+#imgavatar{
+  background: url("./assets/images/UI/infobox/categories/Avatar.png") center/contain no-repeat;
+}
+
+#imgluoghi{
+  background: url("./assets/images/UI/infobox/categories/Luoghi.png") center/contain no-repeat;
+}
+
+#imgcomandi{
+  background: url("./assets/images/UI/infobox/categories/Comandi.png") center/contain no-repeat;
+}
+
+#imgcontatti{
+  background: url("./assets/images/UI/infobox/categories/Contatti.png") center/contain no-repeat;
+}
+
+#imgobbiettivi{
+  background: url("./assets/images/UI/infobox/categories/Obbiettivi.png") center/contain no-repeat;
+}
+
+.infoBack{
+  width: 30%;
+  height: 10vh;
+  background: url("./assets/images/UI/infobox/Indietro.png") left/cover no-repeat;
+  cursor: pointer;
+}
+
+#infoSections{
+  display: flex;
+  flex-direction: column;
+}
+
+.infoSections2{
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.infonavSection{
+  width: 25%;
+  height: 7vh;
+  cursor: pointer;
+}
+
+#navAvatar{
+  background: url("./assets/images/UI/infobox/Avatar.png") left/cover no-repeat;
+  display: none;
+}
+
+#navObbiettivi{
+  background: url("./assets/images/UI/infobox/Obbiettivi.png") left/cover no-repeat;
+  display: none;
+}
+
+#navComandiComputer{
+  background: url("./assets/images/UI/infobox/Comandi.png") left/cover no-repeat;
+  display: none;
+}
+
+#navComandiMobile{
+  background: url("./assets/images/UI/infobox/Comandi.png") left/cover no-repeat;
+  display: none;
+}
+
+#navLuoghi{
+  background: url("./assets/images/UI/infobox/Luoghi.png") left/cover no-repeat;
+  display: none;
+}
+
+#navContatti{
+  background: url("./assets/images/UI/infobox/Contatti.png") left/cover no-repeat;
+  display: none;
+}
+
+#navClose{
+  background: url("./assets/images/UI/infobox/SoTutto.png") left/cover no-repeat;
+}
+
+#comandiMobile{
+  display: none;
+}
+
+/*////////*/
+/*DIALOGUE*/
+/*////////*/
+
+#parentOverlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  opacity: 1;
+  transition: .5s;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#dialogueOverlay {
+  position: absolute;
+  background-image: url("assets/images/NPC/Textbox.png");
+  background-size: contain;
+  right: 5%;
+  bottom: 10%;
+  height: 50%;
+  width: 55%;
+  opacity: 0;
+  transition: 1s;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#characterOverlay {
+  position: absolute;
+  background-image: url("assets/images/NPC/groupie.png");
+  background-size: contain;
+  left: 5%;
+  bottom: 10%;
+  height: 50%;
+  width: 35%;
+  opacity: 0;
+  transition: 1s;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#dialogue {
+  position: absolute;
+  left: 55%;
+  top: 52%;
+  opacity: 0;
+  z-index: 10;
+  width: 30%;
+  transform: rotate(-2deg);
+  font-size: 1.7vw;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+#countdown{
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  color: #00ff00;
+  font-family: terminal_grotesque;
+  font-size: 6vw;
+  mix-blend-mode: exclusion;
+  text-align: center;
+}
+
+#teleport{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+}
+
+/*////////////////*/
+/*RESPONSIVE FIXES*/
+/*////////////////*/
+@media screen and (max-width: 1400px) {
+  #closeButton {
+    left: 0;
+    top: 3vh;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #closeButton {
+    left: 0;
+    top: 5vh;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  #closeButton {
+    left: 0;
+    top: 8vh;
+  }
+  #dialogue {
+    top: 55%;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  #closeButton {
+    left: 0;
+    top: 10.5vh;
+  }
+}
+
+/*//////*/
+/*MOBILE*/
+/*//////*/
+
+@media screen and (max-width: 900px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+
+  /*LOADING MOBILE*/
+  #loadingBar{
+    margin-top: 50px;
+    left: 10vw;
+    height: 5vh;
+    width: 80vw;
+  }
+
+  #loadingBarFill{
+    height: 5vh;
+  }
+
+  #loading p{
+    margin-top: 0;
+    text-align: center;
+  }
+
+  #changeView{
+    top: 1%;
+  }
+
+  /*BAR MOBILE*/
+
+  .grid-container {
+    height: auto;
+    display: block;
+  }
+
+  #bar{
+    overflow-y:auto;
+    height: 99.9%;
+    width: 99%;
+  }
+
+  #barHead {
+    height: 7%;
+    font-size: 3vh;
+  }
+
+  #barHead p{
+    padding-top: 3%;
+  }
+
+  #closeBar{
+    display: none;
+  }
+
+  .barProduct{
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    height: auto;
+  }
+
+  .barDesc{
+    font-size: 23px;
+  }
+
+  #closeBarMobile{
+    display: block;
+    width: 20%;
+    height: 20%;
+    margin-left: 40%;
+    margin-top: 30px;
+    background-image: url("./assets/images/UI/close.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .buyBar {
+    width: 100%;
+    height: 10vh;
+  }
+
+  .productName {
+    font-size: 7vh;
+  }
+
+  #barDivider{
+    height: 2px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: red;
+  }
+
+  #menuButton{
+    display: none;
+  }
+
+  /*STORE MOBILE*/
+
+  #store {
+    width: 99.4%;
+    height: 99.5%;
+    overflow-y: auto;
+  }
+
+  #storeHead {
+    height: 7%;
+    font-size: 3vh;
+  }
+
+  #storeHead p{
+    padding-top: 3%;
+  }
+
+  #nftBox {
+    width: 90%;
+    height: 60%;
+    position: relative;
+    top: 0;
+    margin-bottom: 5%;
+    background-image: url("./assets/videos/nft.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #nftCounter {
+    position: static;
+    font-size: 30px;
+    text-align: center;
+    margin-left: 50%;
+    width: 50%;
+    height: 30px;
+    margin-bottom: 20%;
+  }
+
+  #nftDesc {
+    width: 90%;
+    height: auto;
+    position: static;
+    font-size: 23px;
+    margin-left: 5%;
+  }
+
+  #storeName {
+    font-size: 7vh;
+    font-family: 'terminal_grotesque';
+    transform: scale(1, 1.6);
+  }
+
+  #sentNFT {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 10vw;
+    text-align: center;
+    transform: translateY(-50%) scale(1, 2);
+    font-family: 'terminal_grotesque';
+    opacity: 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+  }
+
+  #addressNft {
+    margin-top: 20%;
+    transform: scale(1, 1.3);
+  }
+
+  #addressNft input {
+    width: 80%;
+    height: 40px;
+    font-size: 30px;
+    border: none;
+  }
+
+  #confermaNft {
+    position: relative;
+    margin-top: 5%;
+    width: 100%;
+    height: 100px;
+    background-image: url("./assets/images/UI/store/Submit.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  #closeStore {
+    display: none;
+  }
+
+  #closeStoreMobile{
+    display: block;
+    width: 20%;
+    height: 20%;
+    margin-left: 40%;
+    margin-top: 30px;
+    background-image: url("./assets/images/UI/close.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #ticketLoadingComputer{
+    display: none;
+  }
+
+  #ticketLoadingMobile{
+    display: block;
+  }
+
+  /*///////*/
+  /*ENDCONV*/
+  /*///////*/
+
+  #dialogueFinished{
+    width: 50%;
+    height: 40%;
+  }
+
+  #dialogueFinishedCounter{
+    font-size: 50px;
+  }
+
+  #dialogueFinishedCounterDue{
+    font-family: 'terminal_grotesque_solid';
+    font-size: 25px;
+    margin: 20px;
+    color: blue;
+  }
+
+#dialogueFinishedCounterDue:visited {
+  color: blue;
+}
+
+  #dialogueCounter{
+    transform: translateX(-50%);
+  }
+
+  /*////////*/
+  /*DIALOGUE*/
+  /*////////*/
+
+  #comandiMobile{
+    display: block;
+  }
+
+  #comandiComputer{
+    display: none;
+  }
+
+  #dialogueOverlay {
+    background-image: url("assets/images/NPC/Textbox_mobile.png");
+    background-position: center;
+    left: 57%;
+    top: 30%;
+    transform: translateX(-50%) scaleX(1.2);
+    height: 65%;
+    width: 90%;
+  }
+
+  #characterOverlay {
+    background-image: url("assets/images/NPC/groupie.png");
+    left: 35%;
+    top: 3%;
+    transform: translateX(-50%);
+    height: 30%;
+    width: 60%;
+  }
+
+  #dialogue {
+    left: 55%;
+    top: 50%;
+    width: 45%;
+    transform: rotate(2deg) translateX(-50%);
+    font-size: 2.8vh;
+    text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none;
+  }
+
+  #navComandiMobile{
+    display: block;
+  }
+
+  #navComandiComputer{
+    display: none;
+  }
+
+  /*////////*/
+  /*SETTINGS*/
+  /*////////*/
+
+  #closeButton {
+    height: 10vh;
+    width: 10vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5%;
+    top: auto;
+    z-index: 1;
+    cursor: pointer;
+    background-image: url("./assets/images/UI/close.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  #menu {
+    height: 100%;
+    width: 90%;
+    min-width: 0;
+    background-image: url("./assets/images/UI/menu_frame_mobile.png");
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #menuTitle{
+    margin-top: 9%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: 10vh;
+    transform: scale(1, 1.6) translateX(-50%);
+  }
+
+  #sliderValue{
+    position: absolute;
+    top: 60%;
+    bottom: 0;
+    left: 50%;
+    margin-bottom: 2%;
+    transform: translateX(-50%);
+    font-family: 'terminal_grotesque_solid';
+    font-size: 4vh;
+  }
+
+  /* The slider itself */
+  .slider {
+    width: 30vh;
+    /* Full-width */
+    height: 15vw;
+    /* Specified height */
+    opacity: 1;
+  }
+
+  #sliderwrap{
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    transform: translate(-50%) rotate(90deg);
+  }
+
+  #countdown{
+    font-size: 8vh;
+  }
+
+  /*///////*/
+  /*INFOBOX*/
+  /*///////*/
+
+  #infobox {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+  }
+
+  .infoSections2{
+    margin-top: 0;
+    flex-direction: column;
+  }
+
+  .infonavSection{
+    width: 100%;
+    height: 10vh;
+    margin-top: 25px;
+  }
+
+  .infoName {
+    font-size: 6.3vh;
+    margin-top: 10%;
+  }
+
+  #infoHead {
+    font-size: 7vw;
+    padding-top: 5px;
+    transition: 1s;
+  }
+
+  .infoText {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .infoImage{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    top: 0;
+  }
+
+  .infoBack{
+    width: 100%;
+    margin-top: 2vh;
+  }
+
+  #closeInfoMobile{
+    display: block;
+    width: 20%;
+    height: 20%;
+    margin-left: 40%;
+    margin-top: 30px;
+    background-image: url("./assets/images/UI/close.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #closeInfo{
+    display: none;
+  }
+}
+
+
+
+/*IS THIS USEFUL?*/
+
+#message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-family: 'Kavivanar', san-serif;
+  font-size: 40px;
+  width: 80%;
+  max-width: 280px;
+  padding: 15px 15px 50px 15px;
+  text-align: center;
+  display: none;
+  align-content: center;
+  justify-content: center;
+  background-color: aliceblue;
+  border: medium solid #3D455C;
+  border-radius: 20px;
+  color: #3D455C;
+  z-index: 99;
+}
+
+#message_ok {
+  position: absolute;
+  bottom: 10px;
+  padding: 10px 20px 10px 20px;
+  font-family: sans-serif;
+  font-size: 20px;
+  background-color: #3D455C;
+  color: #fff;
+  border-radius: 8px;
+  border: medium solid #696882;
+}
+
+#chat {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  bottom: -40px;
+  transition: all 0.5s;
+}
