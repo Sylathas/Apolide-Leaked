@@ -555,7 +555,7 @@ class Game {
 
     this.player = new PlayerLocal(this);
 		/*this.barman = new Npc(this, this.options, "barman", 4288, -125, -3700, -Math.PI/2, false, "Bartender");
-    */this.leaker = new Npc(this, this.options, "Leaker", -46000, -185, -1000, -Math.PI/2, true, "Leaker");
+    */this.leaker = new Npc(this, this.options, "Leaker", -48000, -185, -1000, Math.PI/4, true, "Leaker");
     this.worker1 = new Npc(this, this.options, "Worker", -2500, -185, 1000, Math.PI, true, "Worker");
     this.worker2 = new Npc(this, this.options, "Worker", -4100, -185, -4000, Math.PI/2, true, "Worker");
     this.worker3 = new Npc(this, this.options, "Worker", -4200, -185, -4300, -Math.PI, true, "Worker");
@@ -2469,14 +2469,14 @@ class PlayerLocal extends Player {
       this.game.teleported = true;
       let that = this;
       setTimeout(function(){
-        that.object.position.set(-47000, 0, 0);
+        that.object.position.set(-47000, -185, 0);
         setTimeout(function(){
           $("#teleport").css("opacity", '0');
-          $('#teleport').prop("volume", 0);}, 2400);
+          $('#teleport').prop("volume", 0);}, 2000);
           var audio = new Audio('./assets/sounds/computerRoom.mp3');
           audio.play();
           audio.volume = 0.1;
-        },100);
+        },500);
       this.game.numEvent++;
 		}
 
