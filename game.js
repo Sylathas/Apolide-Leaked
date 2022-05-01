@@ -872,6 +872,12 @@ class Game {
 			}
     });
 
+    const screenWidth = $(window).width();
+    if (screenWidth < 800){
+      $('#teleport source').attr('src', './assets/videos/Transizione_mobile.mp4');
+      $("#teleport")[0].load();
+    }
+
 		document.getElementById('buyDrink').ontouchstart = function(){
 			console.log("NNAMO");
 			game.Briao = true;
@@ -1616,10 +1622,11 @@ class Game {
           }
           if (!this.convCounterDueObject.parent.children[0].convFinished) {
             if(this.convCounterDueObject.parent.children[0].name == "Leaker"){
-              $("#dialogueFinished").css({
+              $("#dialogueFinishedOverlay").css({
                 "display": "block"
               });
               this.convCounterDueObject.parent.children[0].convFinished = true;
+              this.game.convOpen = true;
             } else if(this.convCounterDueObject.parent.children[0].name == "Worker"){
               this.convCounterDue = 0;
             }
@@ -1664,7 +1671,11 @@ class Game {
             document.querySelector('body').appendChild(parent);
             const character = document.createElement('div');
             character.id = 'characterOverlay';
-            character.style.backgroundImage = "url('./assets/images/NPC/" + object.parent.children[0].name + ".png')";
+            if(this.convCounterDueObject.parent.children[0].name == "Leaker" && this.numEvent > 1){
+              character.style.backgroundImage = "url('./assets/images/NPC/" + object.parent.children[0].name + "1.png')";
+            } else {
+              character.style.backgroundImage = "url('./assets/images/NPC/" + object.parent.children[0].name + ".png')";
+            }
             const dialoguebox = document.createElement('div');
             dialoguebox.id = 'dialogueOverlay';
             const dialogue = document.createElement('p');
@@ -1740,10 +1751,11 @@ class Game {
           }
           if (!this.convCounterDueObject.parent.children[0].convFinished) {
             if(this.convCounterDueObject.parent.children[0].name == "Leaker"){
-              $("#dialogueFinished").css({
+              $("#dialogueFinishedOverlay").css({
                 "display": "block"
               });
               this.convCounterDueObject.parent.children[0].convFinished = true;
+              this.game.convOpen = true;
             }
           }
         }
@@ -2461,9 +2473,11 @@ class PlayerLocal extends Player {
 			object.children[0].convCounter++;
 			this.game.convOpen = true;
 			this.game.numEvent++;
+      window.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'}));
 		} else if(pos.x > -1000 && pos.x < 0 && pos.z < -6600 && pos.z > -7100 && this.game.numEvent == 2) {
       $("#teleport").css("opacity", '1');
       $("#teleport").load();
+      $('#teleport').muted = false;
       $('#teleport').trigger('play');
       $('#teleport').prop("volume", 1);
       this.game.teleported = true;
@@ -2471,7 +2485,7 @@ class PlayerLocal extends Player {
       setTimeout(function(){
         that.object.position.set(-47000, -185, 0);
         setTimeout(function(){
-          $("#teleport").css("opacity", '0');
+          $("#teleport").css("display", 'none');
           $('#teleport').prop("volume", 0);}, 2000);
           var audio = new Audio('./assets/sounds/computerRoom.mp3');
           audio.play();

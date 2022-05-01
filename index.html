@@ -20,11 +20,11 @@
 
 	<body id="body">
 		<div id="loading">
-			<video id="ticketLoadingComputer" loop autoplay muted>
+			<video id="ticketLoadingComputer" loop autoplay muted playsinline>
 				<source src="assets/loading/Loading.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 			</video>
-			<video id="ticketLoadingMobile" loop autoplay playsinline>
+			<video id="ticketLoadingMobile" loop autoplay muted playsinline>
 				<source src="assets/loading/Loading_mobile.mp4" type="video/mp4">
 				Your browser does not support the video tag.
 			</video>
@@ -36,7 +36,7 @@
 		<video id="video" loop crossOrigin="anonymous" muted='muted' playsinline style="display:none" controls preload="none">
 			<source src="/video" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 		</video>
-		<video id="teleport" loop playsinline>
+		<video id="teleport" loop playsinline muted autoplay>
 			<source src="assets/videos/Transizione.mp4" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
@@ -208,15 +208,19 @@
 			</div>
 		</div>
 		<div id="dialogueCounter">0/6</div>
-		<div id="dialogueFinished">
-			<div id="infoHead" style="height: 10%">
-				<p>DOWNLOAD.tor</p>
-			</div>
-			<div id="usbImage"></div>
-			<div id="link">
-				<div class="arrowLink" id="arrowLinkLeft"></div>
-				<a id="dialogueFinishedCounterDue" href="https://upload.wikimedia.org/wikipedia/it/thumb/4/4e/Ciao_PX.jpg/1200px-Ciao_PX.jpg" download="Covo_Leak">Download Covo_Leak</a>
-				<div class="arrowLink" id="arrowLinkRight"></div>
+		<div id='dialogueFinishedOverlay'>
+			<div id="dialogueFinished">
+				<div id="infoHead" style="height: 10%">
+					<p>DOWNLOAD.tor</p>
+				</div>
+				<div id="usbImage"></div>
+				<a href="./assets/COVO_PRIVATE.zip" download="Covo_Leak">
+					<div id="link">
+						<div class="arrowLink" id="arrowLinkLeft"></div>
+						<p id="dialogueFinishedCounterDue">Download Covo_Leak</p>
+						<div class="arrowLink" id="arrowLinkRight"></div>
+					</div>
+				</a>
 			</div>
 		</div>
 
@@ -243,7 +247,6 @@
 						_z = val;
 					}
 			  });
-
 			})();
 		</script>
 		<script type="'text/javascript'">

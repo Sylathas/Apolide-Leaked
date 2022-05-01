@@ -313,8 +313,15 @@ canvas {
   left:50%;
   top:50%;
   transform: translate(-50%,-50%);
-  display: none;
   text-align: center;
+}
+
+#dialogueFinishedOverlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
 }
 
 #dialogueFinishedCounter{
@@ -984,7 +991,7 @@ canvas {
 
   /*LOADING MOBILE*/
   #loadingBar{
-    margin-top: 50px;
+    margin-top: 70px;
     left: 10vw;
     height: 5vh;
     width: 80vw;
@@ -1194,8 +1201,8 @@ canvas {
   /*///////*/
 
   #dialogueFinished{
-    width: 50%;
-    height: 40%;
+    width: 70%;
+    height: 60%;
   }
 
   #dialogueFinishedCounter{
@@ -1205,16 +1212,27 @@ canvas {
   #dialogueFinishedCounterDue{
     font-family: 'terminal_grotesque_solid';
     font-size: 25px;
-    margin: 20px;
+    margin: 5px;
+    color: blue;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+
+  #link p {
+    width: 40%;
+  }
+
+  #dialogueFinishedCounterDue:visited {
     color: blue;
   }
 
-#dialogueFinishedCounterDue:visited {
-  color: blue;
-}
-
   #dialogueCounter{
     transform: translateX(-50%);
+  }
+
+  .arrowLink{
+    width: 20%;
   }
 
   /*////////*/
@@ -1234,8 +1252,8 @@ canvas {
     background-position: center;
     left: 57%;
     top: 30%;
-    transform: translateX(-50%) scaleX(1.2);
-    height: 65%;
+    transform: translateX(-50%) scaleX(1.4);
+    height: 55%;
     width: 90%;
   }
 
@@ -1250,10 +1268,10 @@ canvas {
 
   #dialogue {
     left: 55%;
-    top: 50%;
+    top: 47%;
     width: 45%;
     transform: rotate(2deg) translateX(-50%);
-    font-size: 2.8vh;
+    font-size: 3vh;
     text-align: center;
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -1264,7 +1282,7 @@ canvas {
   }
 
   #navComandiMobile{
-    display: block;
+    display: none;
   }
 
   #navComandiComputer{
@@ -1372,6 +1390,10 @@ canvas {
     margin-top: 10%;
   }
 
+  #logoVideo {
+    max-width: 100%;
+  }
+
   #infoHead {
     font-size: 7vw;
     padding-top: 5px;
@@ -1379,7 +1401,7 @@ canvas {
   }
 
   .infoText {
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
   }
 
