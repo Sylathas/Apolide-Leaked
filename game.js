@@ -301,6 +301,26 @@ class Game {
     const helper6 = new THREE.PointLightHelper(lightStore2, 400);
     //this.scene.add(helper6);
 
+    const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.0);
+    //lightStore2.position.set( 626, 3263, 8729);
+    lightLeaker.position.set(-48000, 600, -1000);
+    //lightStore.target.position.set( 6546, -57, -2627);
+
+    lightLeaker.castShadow = true;
+    lightLeaker.shadow.camera.near = 1;
+    lightLeaker.shadow.camera.far = 2000;
+    lightLeaker.shadow.camera.left = lightLeaker.shadow.camera.bottom = -lightSize;
+    lightLeaker.shadow.camera.right = lightLeaker.shadow.camera.top = lightSize;
+
+    lightLeaker.shadow.bias = 0.0009;
+    lightLeaker.shadow.mapSize.width = 1024;
+    lightLeaker.shadow.mapSize.height = 1024;
+
+    //this.scene.add(lightLeaker);
+
+    const helper10 = new THREE.PointLightHelper(lightLeaker, 400);
+    this.scene.add(helper10);
+
     const lightStore4 = new THREE.PointLight(0xFFFFFF, 0.8);
     lightStore4.position.set(1680, 820, 6355);
     //lightStore.target.position.set( 6546, -57, -2627);
@@ -2480,6 +2500,7 @@ class PlayerLocal extends Player {
       $('#teleport').muted = false;
       $('#teleport').trigger('play');
       $('#teleport').prop("volume", 1);
+      //this.game.ambient.intensity = 0.0;
       this.game.teleported = true;
       let that = this;
       setTimeout(function(){
