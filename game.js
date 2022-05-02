@@ -301,7 +301,7 @@ class Game {
     const helper6 = new THREE.PointLightHelper(lightStore2, 400);
     //this.scene.add(helper6);
 
-    const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.0);
+    const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.3);
     //lightStore2.position.set( 626, 3263, 8729);
     lightLeaker.position.set(-48000, 600, -1000);
     //lightStore.target.position.set( 6546, -57, -2627);
@@ -316,7 +316,7 @@ class Game {
     lightLeaker.shadow.mapSize.width = 1024;
     lightLeaker.shadow.mapSize.height = 1024;
 
-    //this.scene.add(lightLeaker);
+    this.scene.add(lightLeaker);
 
     const helper10 = new THREE.PointLightHelper(lightLeaker, 400);
     this.scene.add(helper10);
