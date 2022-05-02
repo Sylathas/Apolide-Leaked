@@ -301,7 +301,7 @@ class Game {
     const helper6 = new THREE.PointLightHelper(lightStore2, 400);
     //this.scene.add(helper6);
 
-    const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.3);
+    const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.1);
     //lightStore2.position.set( 626, 3263, 8729);
     lightLeaker.position.set(-48000, 600, -1000);
     //lightStore.target.position.set( 6546, -57, -2627);
