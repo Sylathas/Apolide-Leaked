@@ -72,7 +72,7 @@ canvas {
   z-index: 10;
   left: 52%;
   transform: translateX(-50%);
-  top: 70%;
+  top: 80%;
   font-size: 30px;
   color: red;
 }
@@ -93,19 +93,18 @@ canvas {
   left: 50%;
   top: 35%;
   transform: translate(-50%,-50%);
-  width: 100%;
-  height: 70%;
+  width: 150%;
+  height: 100%;
   display: none;
 }
 
 #loadingBar{
   position: absolute;
   z-index: 11;
-  left: 10vw;
-  top: 80%;
-  width: 80vw;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
   height: 2vw;
-  border: 1px solid red;
 }
 
 #loadingBarFill{
@@ -143,7 +142,6 @@ canvas {
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  display: none;
 }
 
 /*////////*/
@@ -167,7 +165,6 @@ canvas {
        -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
-  display: none;
 }
 
 #menuButton:active {
@@ -309,7 +306,6 @@ canvas {
   background-color: black;
   border: 1px solid red;
   position: absolute;
-  z-index: 1;
   left:50%;
   top:50%;
   transform: translate(-50%,-50%);
@@ -321,6 +317,7 @@ canvas {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
   display: none;
 }
 
@@ -992,9 +989,9 @@ canvas {
   /*LOADING MOBILE*/
   #loadingBar{
     margin-top: 70px;
-    left: 10vw;
+    left: 0;
     height: 5vh;
-    width: 80vw;
+    width: 100vw;
   }
 
   #loadingBarFill{
@@ -1002,6 +999,7 @@ canvas {
   }
 
   #loading p{
+    top: 65%;
     margin-top: 0;
     text-align: center;
   }
@@ -1216,7 +1214,6 @@ canvas {
     color: blue;
     text-align: center;
     position: relative;
-    z-index: 100;
   }
 
   #link p {

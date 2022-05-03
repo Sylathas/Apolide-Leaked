@@ -109,6 +109,11 @@ class Game {
     this.Elettro;
     this.Briao;
     this.teleported = false;
+    this.audio;
+    this.distantSound;
+    this.teleportSound;
+    this.musicID;
+    this.ambienceID;
 
     this.lightsPalco = [];
 		this.convOpen = false;
@@ -302,24 +307,24 @@ class Game {
     //this.scene.add(helper6);
 
     const lightLeaker = new THREE.DirectionalLight(0x37a7f2, 0.1);
-    //lightStore2.position.set( 626, 3263, 8729);
-    lightLeaker.position.set(-48000, 600, -1000);
-    //lightStore.target.position.set( 6546, -57, -2627);
+   //lightStore2.position.set( 626, 3263, 8729);
+   lightLeaker.position.set(-48000, 600, -1000);
+   //lightStore.target.position.set( 6546, -57, -2627);
 
-    lightLeaker.castShadow = true;
-    lightLeaker.shadow.camera.near = 1;
-    lightLeaker.shadow.camera.far = 2000;
-    lightLeaker.shadow.camera.left = lightLeaker.shadow.camera.bottom = -lightSize;
-    lightLeaker.shadow.camera.right = lightLeaker.shadow.camera.top = lightSize;
+   lightLeaker.castShadow = true;
+   lightLeaker.shadow.camera.near = 1;
+   lightLeaker.shadow.camera.far = 2000;
+   lightLeaker.shadow.camera.left = lightLeaker.shadow.camera.bottom = -lightSize;
+   lightLeaker.shadow.camera.right = lightLeaker.shadow.camera.top = lightSize;
 
-    lightLeaker.shadow.bias = 0.0009;
-    lightLeaker.shadow.mapSize.width = 1024;
-    lightLeaker.shadow.mapSize.height = 1024;
+   lightLeaker.shadow.bias = 0.0009;
+   lightLeaker.shadow.mapSize.width = 1024;
+   lightLeaker.shadow.mapSize.height = 1024;
 
-    this.scene.add(lightLeaker);
+   this.scene.add(lightLeaker);
 
-    const helper10 = new THREE.PointLightHelper(lightLeaker, 400);
-    this.scene.add(helper10);
+   const helper10 = new THREE.PointLightHelper(lightLeaker, 400);
+   this.scene.add(helper10);
 
     const lightStore4 = new THREE.PointLight(0xFFFFFF, 0.8);
     lightStore4.position.set(1680, 820, 6355);
@@ -559,7 +564,7 @@ class Game {
       this.loadProgress = loadingAtm + Math.floor(itemsLoaded / itemsTotal * 100 / divideLoaded);
       console.log(this.loadProgress);
       $("#loadingBarFill").css({
-        "width": this.loadProgress / 1.25 + "vw"
+        "width": this.loadProgress + "vw"
       });
       document.getElementById("loadText").innerHTML = "Il caricamento potrebbe durare un po'<span class='loader__dot'>.</span><span class='loader__dot'>.</span><span class='loader__dot'>.</span> " + this.loadProgress + "%";
       console.log("Loading might take a while<span class='loader__dot'>.</span><span class='loader__dot'>.</span><span class='loader__dot'>.</span>... " + this.loadProgress + "%");
@@ -772,6 +777,27 @@ class Game {
       game: this
     });
 
+    this.distantSound = new Howl({
+      src: 'concert_audio.mp3',
+      sprite: {
+        ambience: [0, 83000],
+        music: [84000, 82000]
+      },
+      volume: 1,
+      loop: true
+    });
+
+    this.audio = new Howl({
+      src: './assets/sounds/computerRoom.mp3',
+      volume: 0.3,
+      loop: true
+    });
+
+    this.teleportSound = new Howl({
+      src: './assets/sounds/teleportSound.mp3',
+      volume: 1
+    });
+
     game.emote = false;
 
     window.addEventListener("keydown", function(event) {
@@ -898,6 +924,22 @@ class Game {
       $("#teleport")[0].load();
     }
 
+    document.getElementById('body').ontouchstart = function(){
+      if(!game.distantSound.playing()){
+        game.musicID = game.distantSound.play('music');
+        game.ambienceID = game.distantSound.play('ambience');
+        game.distantSound.volume(0.7, game.ambienceID);
+      }
+		}
+
+    document.getElementById('body').onclick = function(){
+      if(!game.distantSound.playing()){
+        game.musicID = game.distantSound.play('music');
+        game.ambienceID = game.distantSound.play('ambience');
+        game.distantSound.volume(0.7, game.ambienceID);
+      }
+		}
+
 		document.getElementById('buyDrink').ontouchstart = function(){
 			console.log("NNAMO");
 			game.Briao = true;
@@ -906,6 +948,7 @@ class Game {
 				"display": "none"
 			  });
 		}
+
 		document.getElementById('buyDrink').onclick = function(){
 			console.log("NNAMO");
 			game.Briao = true;
@@ -987,9 +1030,7 @@ class Game {
 	      "display": "block"
 	    });
 		}
-		document.getElementById('body').onclick = function(){
-			game.video.muted = false;
-		}
+
 		document.getElementById('closeBarMobile').ontouchstart = function(){
 			$("#store, #bar, #infobox").css({
 	      "display": "none"
@@ -1042,41 +1083,31 @@ class Game {
 		document.getElementById('navAvatar').ontouchstart = function(){
 			$("#obbiettivi, #comandi, #luoghi, #contatti, #start").css("display", "none");
 			$("#avatar").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navObbiettivi').ontouchstart = function(){
 			$("#avatar, #comandi, #luoghi, #contatti, #start").css("display", "none");
 			$("#obbiettivi").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navComandiComputer').ontouchstart = function(){
 			$("#avatar, #obbiettivi, #luoghi, #contatti, #start").css("display", "none");
 			$("#comandiComputer").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navComandiMobile').ontouchstart = function(){
 			$("#avatar, #obbiettivi, #luoghi, #contatti, #start").css("display", "none");
 			$("#comandiMobile").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navLuoghi').ontouchstart = function(){
 			$("#avatar, #obbiettivi, #luoghi, #contatti, #start").css("display", "none");
 			$("#luoghi").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navContatti').ontouchstart = function(){
 			$("#avatar, #obbiettivi, #luoghi, #comandi, #start").css("display", "none");
 			$("#contatti").css("display", "block");
-			game.video.muted = false;
 		}
 		document.getElementById('navClose').ontouchstart = function(){
 			$("#store, #bar, #infobox").css({
 				"display": "none"
 			});
-			game.video.muted = false;
-		}
-		document.getElementById('body').ontouchstart = function(){
-			game.video.muted = false;
 		}
 		document.getElementById('back1').ontouchstart = function(){
 			$("#obbiettivi, #comandiMobile, #comandiComputer, #luoghi, #contatti, #avatar").css("display", "none");
@@ -1106,7 +1137,6 @@ class Game {
 		$(".infoBack").click(function(event) {
 			$("#obbiettivi, #comandiMobile, #comandiComputer, #luoghi, #contatti, #avatar").css("display", "none");
 			$("#start").css("display", "block");
-			game.video.muted = false;
 		});
 
 		document.getElementById('changeView').onclick = function(){
@@ -1271,7 +1301,21 @@ class Game {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setClearColor(0x000000, 0);
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    function resizeCanvasToDisplaySize() {
+      const canvas = this.renderer.domElement;
+      // look up the size the canvas is being displayed
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+
+      // adjust displayBuffer size to match
+      if (canvas.width !== width || canvas.height !== height) {
+        // you must pass false here or three.js sadly fights the browser
+        this.renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+    }
+
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.autoUpdate = false;
     this.renderer.shadowMap.type = THREE.BasicShadowMap;
@@ -1279,6 +1323,14 @@ class Game {
     this.renderer.toneMappingExposure = 2.3;
     this.renderer.domElement.style.top = 0;
     this.renderer.domElement.style.zIndex = '1';
+
+    function animation() {
+      resizeCanvasToDisplaySize();
+      requestAnimationFrame(animation);
+      requestAnimationFrame(function(){
+        game.animate();
+      })
+    }
 
     //this.renderer.outputEncoding = THREE.sRGBEncoding;
     document.querySelector('#webgl').appendChild(this.renderer.domElement);
@@ -1431,6 +1483,7 @@ class Game {
 
   distantAudio(objemitter, audio) {
     let vol = 0.1;
+
     if (this.player !== undefined && this.player.object !== undefined) {
       const dist = objemitter.position.distanceTo(this.player.object.position);
       const tmpVol = 1.5 - dist / 15000;
@@ -1439,9 +1492,9 @@ class Game {
       if (vol > 1) vol = 1;
     }
     if(!this.teleported){
-			audio.volume = vol;
+			this.distantSound.volume(vol, this.musicID);
 		} else {
-      audio.volume = 0;
+      this.distantSound.volume(0);
     }
   }
 
@@ -1646,7 +1699,7 @@ class Game {
                 "display": "block"
               });
               this.convCounterDueObject.parent.children[0].convFinished = true;
-              this.game.convOpen = true;
+              this.convOpen = true;
             } else if(this.convCounterDueObject.parent.children[0].name == "Worker"){
               this.convCounterDue = 0;
             }
@@ -1747,7 +1800,6 @@ class Game {
     if (convOpen) {
       if (convsMale[this.convCounterDueObject.parent.children[0].name][this.convCounterDue][this.convCounter] === undefined) {
         this.convCounter = 0;
-				game.convOpen = false;
 				this.convOpen = false;
         this.convCounterDueObject.parent.children[0].convCounter = 0;
         document.getElementById("parentOverlay").style.opacity = "0";
@@ -1771,11 +1823,12 @@ class Game {
           }
           if (!this.convCounterDueObject.parent.children[0].convFinished) {
             if(this.convCounterDueObject.parent.children[0].name == "Leaker"){
+              console.log('ciao');
               $("#dialogueFinishedOverlay").css({
                 "display": "block"
               });
               this.convCounterDueObject.parent.children[0].convFinished = true;
-              this.game.convOpen = true;
+              this.convOpen = true;
             }
           }
         }
@@ -1916,7 +1969,8 @@ class Game {
     }
 
     var vid = document.getElementById("video");
-    this.distantAudio(this.screen, vid);
+    vid.volume = 0;
+    this.distantAudio(this.screen, this.distantSound);
 
     if (this.player.motion !== undefined) this.player.move(dt);
 
@@ -2497,20 +2551,16 @@ class PlayerLocal extends Player {
 		} else if(pos.x > -1000 && pos.x < 0 && pos.z < -6600 && pos.z > -7100 && this.game.numEvent == 2) {
       $("#teleport").css("opacity", '1');
       $("#teleport").load();
-      $('#teleport').muted = false;
       $('#teleport').trigger('play');
-      $('#teleport').prop("volume", 1);
-      //this.game.ambient.intensity = 0.0;
+      this.game.teleportSound.play();
       this.game.teleported = true;
       let that = this;
       setTimeout(function(){
         that.object.position.set(-47000, -185, 0);
         setTimeout(function(){
           $("#teleport").css("display", 'none');
-          $('#teleport').prop("volume", 0);}, 2000);
-          var audio = new Audio('./assets/sounds/computerRoom.mp3');
-          audio.play();
-          audio.volume = 0.1;
+          that.game.audio.play();
+        }, 2000);
         },500);
       this.game.numEvent++;
 		}
